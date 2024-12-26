@@ -34,7 +34,7 @@ app.post("/newTodo",async (req,res)=>{
         msg:"Todo Created"
     })
 })
-app.put("updateToDo",async (req,res)=>{
+app.put("/updateToDo",async (req,res)=>{
     const updatePayLoad=req.body;
     const parsePayLoad=updateTodoSchema.safeParse(updatePayLoad);
     if(!parsePayLoad.success){
@@ -44,12 +44,14 @@ app.put("updateToDo",async (req,res)=>{
         return;
     }
     //update todo in mongoDB.
-    await todo.update({_id:req.body.id },{completed:true})
+    await todo.updateOne({_id:req.body._id },{completed:true})
     res.json({
         msg:"Todo marked as completed."
     })
 })
-
+app.use((req,res)=>{
+    res.json({msg:"entered an invalid route."})
+})
 app.listen(3000,(error)=>{
     console.log(error);
 })

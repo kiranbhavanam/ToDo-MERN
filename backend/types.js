@@ -20,7 +20,7 @@ const zod=require("zod");
         }
     );
     const updateTodoSchema=zod.object({
-        id:zod.string()
+        _id:zod.string()
     });
 
 module.exports={
