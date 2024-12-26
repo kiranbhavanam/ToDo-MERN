@@ -2,10 +2,12 @@
 //with express.json() middleware.
 
 const express=require("express");
+const cors=require("cors")
 const { newTodoSchema,updateTodoSchema } = require("./types");
 const {todo} =require("./db")
 const app=express();//initializes empty express app.
 app.use(express.json());//make sures all the post endpoints will work,parse the body if its json body.
+app.use(cors())
 //Authentication for signup and signin
 app.post("/signup",(req,res)=>{})
 app.post("/signin",(req,res)=>{})
@@ -52,6 +54,6 @@ app.put("/updateToDo",async (req,res)=>{
 app.use((req,res)=>{
     res.json({msg:"entered an invalid route."})
 })
-app.listen(3000,(error)=>{
+app.listen(4000,(error)=>{
     console.log(error);
 })
